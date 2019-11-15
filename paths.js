@@ -7,6 +7,7 @@ var pathList = {
   srcClient: getPathFromRoot('./src/client'),
   srcShared: getPathFromRoot('./src/shared'),
   srcServer: getPathFromRoot('./src/server'),
+  buildServer: getPathFromRoot('./dist/server'),
   src: getPathFromRoot('./src'),
   dist: getPathFromRoot('./dist'),
   publicPath: '/',

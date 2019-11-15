@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import connect from './connect.js'
-import Login from './Login.js'
-import AddItem from './AddItem.js'
+import connect from './connect'
+import Login from './components/Login'
+import AddItem from './components/AddItem'
+
 const App = ({ loggedIn }) => {
   if (!loggedIn) {
     return <Login />
@@ -11,11 +12,5 @@ const App = ({ loggedIn }) => {
     <AddItem />
   )
 }
-const props = ({ loggedIn }) => ({ loggedIn })
+const props = ({ auth: { loggedIn } }) => ({ loggedIn })
 export default connect({ props })(App)
-
-// if (module.hot) {
-//   module.hot.accept()
-// }
-
-// ReactDOM.render(<App />, document.getElementsByTagName('body')[0]) //

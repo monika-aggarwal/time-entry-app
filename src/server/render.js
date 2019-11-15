@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 export default (req, res, next) => {
 
   const routerContext = {}
-  console.log(res.locals.store, 'sdofuiywoewrwe')
   const content = renderToString(
     <Provider store={res.locals.store}>
       <Router location={req.url} context={routerContext}>
@@ -15,7 +14,6 @@ export default (req, res, next) => {
       </Router>
     </Provider>
   )
-  console.log(content)
   const state = res.locals.store.getState()
   return res.send(
     '<!doctype html>' +

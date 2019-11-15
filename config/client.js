@@ -57,6 +57,7 @@ module.exports = {
   mode: 'development',
   name: 'client',
   target: 'web',
+  devtool: 'source-map',
   entry: {
     bundle: [`${paths.src}/client/index.js`]
   },

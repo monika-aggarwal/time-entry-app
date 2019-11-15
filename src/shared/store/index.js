@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-const reducer = (state, action) => ({ loggedIn: true })
+import reducer from './combineReducer'
+// const reducer = (state, action) => ({ loggedIn: false })
+
 export default function configureStore(initialState = {}, extraParams = {}) {
   let enhancer = applyMiddleware(thunk.withExtraArgument(extraParams))
   if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
