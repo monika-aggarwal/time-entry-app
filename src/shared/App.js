@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import connect from './connect'
 import Login from './components/Login'
 import AddItem from './components/AddItem'
 import Report from './components/Report'
-// import { checkLogin } from './actions/auth'
+import Header from './components/Header'
 const projectList = [{
   key: 'project1',
   label: 'project 1'
@@ -16,12 +16,20 @@ const projectList = [{
   label: 'project 3'
 }]
 const App = ({ loggedIn }) => {
-  if (!loggedIn) {
-    return <Login />
-  }
+  const [showReport, setShowReport] = useState(false)
   return (
-    // <AddItem projectList={projectList} />
-    <Report />
+    <div>
+      <Header onClick={(show) => setShowReport(show)} />
+      {
+        !loggedIn && <Login />
+      }
+      {
+        !showReport && <AddItem projectList={projectList} />
+      }
+      {
+        showReport && <Report />
+      }
+    </div>
   )
 }
 const props = ({ auth: { loggedIn } }) => ({ loggedIn })
