@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "yarn",
-    "start": "NODE_ENV=development node ./src/start.js"
+    "prestart:debug": "yarn",
+    "start:debug": "NODE_ENV=development node ./src/start.js"
   },
   "author": "",
   "license": "ISC",
