@@ -20,8 +20,10 @@ const App = ({ loggedIn }) => {
     return <Login />
   }
   return (
-    // <AddItem projectList={projectList} />
-    <Report />
+    <React.Fragment>
+      <AddItem projectList={projectList} />
+      <Report />
+    </React.Fragment>
   )
 }
 const props = ({ auth: { loggedIn } }) => ({ loggedIn })
