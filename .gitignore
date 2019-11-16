@@ -9,7 +9,8 @@ react-codemod
 coverage
 .env
 stuff
-dist/*
+dist/
+dist/**/*.*
 src/shared/configureFirebase.js
 yarn-error.log
 tmp
