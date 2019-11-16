@@ -1,7 +1,7 @@
 const path = require('path')
 const paths = require('../paths')
 var webpack = require('webpack')
-
+const nodeExternals = require('webpack-node-externals')
 const babelLoader = (server) => ({
   test: /\.(js|jsx|mjs)$/,
   exclude: /node_modules/,
@@ -65,6 +65,11 @@ module.exports = {
     filename: 'server.js',
     publicPath: paths.publicPath
   },
+  externals: [
+    nodeExternals({
+      whitelist: /\.css$/
+    })
+  ],
   module: {
     rules: [
       {
@@ -82,7 +87,8 @@ module.exports = {
       // 'assets': pathList.assets
     },
     extensions: ['.js', '.mjs'],
-    mainFiles: ['index'],
+    // mainFiles: ['index'],
+    mainFields: ['main', 'module'],
     modules: [paths.src, 'node_modules']
   },
   stats: {
