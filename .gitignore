@@ -1,4 +1,7 @@
 node_modules
+dist/
+./dist/*
+./dist
 logs/*.log
 /.vagrant
 .webpack-cache
@@ -9,8 +12,8 @@ react-codemod
 coverage
 .env
 stuff
-dist/
-dist/**/*.*
+# dist/
+# dist/**/*.*
 src/shared/configureFirebase.js
 yarn-error.log
 tmp
