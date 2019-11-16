@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import connect from './connect'
 import Login from './components/Login'
 import AddItem from './components/AddItem'
+// import { checkLogin } from './actions/auth'
 
 const App = ({ loggedIn }) => {
   if (!loggedIn) {

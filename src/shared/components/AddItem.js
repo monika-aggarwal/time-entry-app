@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react'
-const AddItem = () => {
+import { signOut } from 'shared/actions/auth'
+import connect from 'shared/connect'
+
+const AddItem = ({ signOut }) => {
   const [{ name = '', project = '', started = false }, set] = useState({})
   const [{ time, count = 0 }, setTime] = useState({})
   const [data, setDta] = useState([])
@@ -24,6 +27,7 @@ const AddItem = () => {
   const setData = (data) => set(dta => ({ ...dta, ...data }))
   return (
     <div>
+      <div onClick={() => { signOut() }}>sign out</div>
       <input type='text' onChange={e => setData({ name: e.target.value })} placeholder='add item name' value={name} />
       <select value={project} onChange={e => setData({ project: e.target.value })}>
         <option value=''>Select</option>
@@ -44,4 +48,6 @@ const AddItem = () => {
     </div>
   )
 }
-export default AddItem
+
+const props = () => ({})
+export default connect({ props, actions: { signOut } })(AddItem)

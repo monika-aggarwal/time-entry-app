@@ -4,9 +4,13 @@ import { StaticRouter as Router } from 'react-router-dom';
 import App from 'shared/App';
 import Html from './HTML';
 import { Provider } from 'react-redux'
-export default (req, res, next) => {
+import { checkLogin } from './registerServer'
 
+export default async (req, res, next) => {
+  const store = res.locals.store
+  await store.dispatch(checkLogin())
   const routerContext = {}
+
   const content = renderToString(
     <Provider store={res.locals.store}>
       <Router location={req.url} context={routerContext}>

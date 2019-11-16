@@ -15,3 +15,16 @@ export const authReducer = (state = {
 export const appReducer = (state = {}, { type, payload }) => {
   return state
 }
+
+export const cookieReducer = (state = {}, { type, payload }) => {
+  switch (type) {
+    case 'SET_COOKIES':
+    case 'SET_COOKIE':
+      return { ...state, ...payload }
+    case 'CLEAR_COOKIE':
+      const newState = { ...state }
+      delete newState[payload.key]
+      return newState
+  }
+  return state
+}

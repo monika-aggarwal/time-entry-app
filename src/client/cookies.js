@@ -6,7 +6,7 @@ function writeCookie(key, value, opts) {
   }
   opts = { ...opts }
 
-  if (window && window.document && window.document.cookie) {
+  if (window && window.document) {
     window.document.cookie = cookie.serialize(key, value, opts)
   }
 }

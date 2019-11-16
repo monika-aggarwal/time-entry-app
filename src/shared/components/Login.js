@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { login, register } from 'shared/actions/auth'
 import connect from 'shared/connect'
 
-// const login = data => console.log(data)
 
 const SCREEN = {
   REGISTER: 'register',
