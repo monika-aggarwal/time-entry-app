@@ -139,7 +139,6 @@ const prodConfig = {
     })
   ],
   optimization: {
-    minimize: false,
     minimizer: [
       new TerserJsPlugin({
         parallel: true,
