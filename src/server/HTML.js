@@ -9,6 +9,7 @@ const HTML = ({
     <html lang='en'>
       <head>
         {header}
+        <link rel="stylesheet" href="https://rawgit.com/arqex/react-datetime/master/css/react-datetime.css"></link>
       </head>
       <body>
         <div id='app' className='app' dangerouslySetInnerHTML={{ __html: children }} />

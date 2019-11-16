@@ -13,6 +13,10 @@ export const authReducer = (state = {
 }
 
 export const appReducer = (state = {}, { type, payload }) => {
+  switch (type) {
+    case 'TASKLIST':
+      return { ...state, ...payload }
+  }
   return state
 }
 
