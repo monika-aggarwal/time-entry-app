@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react'
-import { signOut, fetchList } from 'shared/actions/auth'
+import { signOut } from 'shared/actions/auth'
 import { createEntry } from 'shared/actions/task'
 import connect from 'shared/connect'
 import PrintTask from './PrintTask'
 
 
-const AddItem = ({ signOut, createEntry, fetchList, projectList }) => {
+const AddItem = ({ signOut, createEntry, projectList }) => {
   const [{ name = '', project = '', started = false }, set] = useState({})
   const [{ startTime, count = 0 }, setTime] = useState({})
   const [taskList, setTaskList] = useState([])
@@ -62,4 +62,4 @@ const AddItem = ({ signOut, createEntry, fetchList, projectList }) => {
 }
 
 const props = () => ({})
-export default connect({ props, actions: { signOut, createEntry, fetchList } })(AddItem)
+export default connect({ props, actions: { signOut, createEntry } })(AddItem)
