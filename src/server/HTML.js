@@ -18,7 +18,7 @@ const HTML = ({
             __html: `window.__INITIAL_STATE__ = __STATE__`
           }}
         />
-        <script type="text/javascript" src={`http://localhost:${process.env.WEBPACK_PORT || 8501}/bundle.js`} />
+        __SCRIPTS__
       </body>
     </html >)
 }

@@ -1,8 +1,8 @@
 var path = require('path')
+const fs = require('fs')
+const appDirectory = fs.realpathSync(process.cwd())
+const getPathFromRoot = (relativePath) => path.resolve(appDirectory, relativePath)
 
-function getPathFromRoot(pathString) {
-  return path.resolve(__dirname, pathString)
-}
 var pathList = {
   srcClient: getPathFromRoot('./src/client'),
   srcShared: getPathFromRoot('./src/shared'),
@@ -10,7 +10,9 @@ var pathList = {
   buildServer: getPathFromRoot('./dist/server'),
   src: getPathFromRoot('./src'),
   dist: getPathFromRoot('./dist'),
+  stats: getPathFromRoot('dist/loadable-stats.json'),
   publicPath: '/',
+  prodPublicPath: '/static/'
   // assets: getPathFromRoot('./src/assets')
 }
 

@@ -17,12 +17,12 @@ const projectList = [{
 }]
 const App = ({ loggedIn }) => {
   const [showReport, setShowReport] = useState(false)
+  if (!loggedIn) {
+    return <Login />
+  }
   return (
     <React.Fragment>
       <Header onClick={(show) => setShowReport(show)} />
-      {
-        !loggedIn && <Login />
-      }
       {
         !showReport && <AddItem projectList={projectList} />
       }
