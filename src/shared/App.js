@@ -18,7 +18,7 @@ const projectList = [{
 const App = ({ loggedIn }) => {
   const [showReport, setShowReport] = useState(false)
   return (
-    <div>
+    <React.Fragment>
       <Header onClick={(show) => setShowReport(show)} />
       {
         !loggedIn && <Login />
@@ -29,7 +29,7 @@ const App = ({ loggedIn }) => {
       {
         showReport && <Report />
       }
-    </div>
+    </React.Fragment>
   )
 }
 const props = ({ auth: { loggedIn } }) => ({ loggedIn })
