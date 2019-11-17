@@ -7,13 +7,20 @@ export const headerContainer = css`
 export const loginContainer = css`
     margin: 20px auto;
     width: 400px;
+    position: relative;
     padding: 20px;
     border: 1px solid #e3edf6;
     border-radius: 2px;
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
 
 `
-
+export const timer = css`
+position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 0;
+    color: red;
+`
 export const loginBtn = css`
   background: #657c87;
   color: white;
@@ -85,13 +92,6 @@ const globals = () => css`
       cursor: pointer;
       border-radius: 2px;
     }
-  input,
-  select {
-    border: none;
-    border-radius: 0;
-    outline: none;
-  }
-  img,
   a {
     border: none;
     outline: none;
@@ -110,9 +110,20 @@ const globals = () => css`
   label+input+label {
     margin-top: 15px;
   }
-  input {
+  h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #596a7b;
+  }
+  input, select {
+    border: none;
+    border-radius: 0;
+    outline: none;
     border-bottom: 1px solid #92a1a8;
     padding: 6px 10px 6px 0;
+    appearance: none;
+    background: transparent;
     display: block;
     color: #20282f;
     width: 100%;

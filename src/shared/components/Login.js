@@ -11,7 +11,7 @@ const SCREEN = {
 
 const AuthComponent = ({ login, register, errorMessage }) => {
   const [{ email = '', password = '' }, setState] = useState({})
-  const [screen, setScreen] = useState(SCREEN.REGISTER)
+  const [screen, setScreen] = useState(SCREEN.LOGIN)
 
   function onChange(field, value) {
     setState(prev => ({

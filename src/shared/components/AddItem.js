@@ -1,11 +1,10 @@
-import React, { useState, useRef } from 'react'
-import { signOut } from 'shared/actions/auth'
+import React, { useState, useRef, Fragment } from 'react'
 import { createEntry } from 'shared/actions/task'
 import connect from 'shared/connect'
 import PrintTask from './PrintTask'
+import {timer, loginContainer, loginBtn} from 'src/shared/components/style'
 
-
-const AddItem = ({ signOut, createEntry, projectList }) => {
+const AddItem = ({ createEntry, projectList }) => {
   const [{ name = '', project = '', started = false }, set] = useState({})
   const [{ startTime, count = 0 }, setTime] = useState({})
   const [taskList, setTaskList] = useState([])
@@ -27,6 +26,13 @@ const AddItem = ({ signOut, createEntry, projectList }) => {
     createEntry(task)
   }
 
+  const formatTimer = (count) => {
+    const hours = Math.floor(count / 3600)
+    const minutes = Math.floor((count - hours * 3600) / 60)
+    const seconds = count - hours * 3600 - minutes * 60
+    return `${hours.toString().padStart(2, '0')} : ${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`
+  }
+
   const stop = () => {
     const endTime = new Date().getTime()
     setTaskData('started', false)
@@ -34,32 +40,34 @@ const AddItem = ({ signOut, createEntry, projectList }) => {
     makeEntry({ name, project, startTime, endTime })
   }
   return (
-    <div>
-      <div onClick={() => { signOut() }}>sign out</div>
-      <input
-        type='text'
-        onChange={({ target: { value } }) => setTaskData('name', value)}
-        placeholder='add item name'
-        value={name} />
+    <Fragment>
+      <div css={loginContainer}>
+        <h2>Record your tasks here</h2>
+        <label>What are you up to?</label>
+        <input
+          type='text'
+          onChange={({ target: { value } }) => setTaskData('name', value)}
+          value={name} />
+        <label>Tag your task to a project</label>
+        <select
+          value={project}
+          onChange={({ target: { value } }) => setTaskData('project', value)}>
+          <option value=''>Select</option>
+          {
+            projectList.map(({ key, label }) => (<option value={key} key={key}>{label}</option>))
+          }
+        </select>
 
-      <select
-        value={project}
-        onChange={({ target: { value } }) => setTaskData('project', value)}>
-        <option value=''>Select</option>
-        {
-          projectList.map(({ key, label }) => (<option value={key} key={key}>{label}</option>))
-        }
-      </select>
+        {started && <div css={timer}>Time Elapsed: {formatTimer(count)}</div>}
 
-      <div>Timer: {count}</div>
-
-      <button onClick={started ? stop : start}>{started ? 'stop' : 'start'}</button>
+        <button css={loginBtn} onClick={started ? stop : start}>{started ? 'stop' : 'start'}</button>
+      </div>
       {
         taskList && !!taskList.length && <PrintTask taskList={taskList} />
       }
-    </div>
+    </Fragment>
   )
 }
 
 const props = () => ({})
-export default connect({ props, actions: { signOut, createEntry } })(AddItem)
+export default connect({ props, actions: { createEntry } })(AddItem)

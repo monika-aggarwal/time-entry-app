@@ -1,4 +1,4 @@
-import react, { useState } from 'react'
+import React, { useState } from 'react'
 import connect from 'shared/connect'
 import TaskFilter from './TaskFilter'
 import { fetchList } from 'shared/actions/task'
