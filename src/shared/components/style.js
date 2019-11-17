@@ -146,7 +146,12 @@ export const table = css`
       background-color: #e8e8e8;
     }
 `
-
+export const errorStyle = css`
+    font-size: 12px;
+    color: red;
+    display: block;
+    margin-top: 10px;
+`
 export const Core = () => (
     <Global styles={globals()} />
 )

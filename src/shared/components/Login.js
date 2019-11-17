@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { login, register } from 'shared/actions/auth'
 import connect from 'shared/connect'
 import Header from 'src/shared/components/Header'
-import {loginContainer, loginBtn} from 'src/shared/components/style'
+import { loginContainer, loginBtn, errorStyle } from 'src/shared/components/style'
 
 const SCREEN = {
   REGISTER: 'register',
@@ -50,7 +50,7 @@ const AuthComponent = ({ login, register, errorMessage }) => {
         <input type='password' onChange={({ target: { value } }) => onChange('password', value)} value={password} />
         <button css={loginBtn} onClick={() => onSubmit()}>{screen}</button>
         {
-          errorMessage && <span>{errorMessage}</span>
+          errorMessage && <span css={errorStyle}>{errorMessage}</span>
         }
       </div>
     </Fragment>
