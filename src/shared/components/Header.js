@@ -1,11 +1,12 @@
-import react from 'react'
-
-const Header = ({ onClick }) => {
-  return <header>
-    <div>Time Entry App</div>
-    <div>
-      <div onClick={() => onClick(false)}>Add Task</div>
-      <div onClick={() => onClick(true)}>View Task</div>
+import React from 'react'
+import { title, headerContainer, btnCont } from 'src/shared/components/style'
+const Header = ({ onClick, children }) => {
+  return <header css={headerContainer}>
+    <div css={title}>Time Entry App</div>
+    <div css={btnCont}>
+      {children}
+      <button onClick={() => onClick(false)}>Add Task</button>
+      <button onClick={() => onClick(true)}>View Task</button>
     </div>
   </header>
 }
