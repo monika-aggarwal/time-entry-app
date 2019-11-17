@@ -9,6 +9,7 @@ const HTML = ({
     <html lang='en'>
       <head>
         {header}
+        <link rel="stylesheet" href="https://rawgit.com/arqex/react-datetime/master/css/react-datetime.css"></link>
       </head>
       <body>
         <div id='app' className='app' dangerouslySetInnerHTML={{ __html: children }} />
@@ -17,7 +18,7 @@ const HTML = ({
             __html: `window.__INITIAL_STATE__ = __STATE__`
           }}
         />
-        <script type="text/javascript" src={`http://localhost:${process.env.WEBPACK_PORT || 8501}/bundle.js`} />
+        __SCRIPTS__
       </body>
     </html >)
 }

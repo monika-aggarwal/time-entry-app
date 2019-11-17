@@ -5,7 +5,7 @@ import reducer from './combineReducer'
 
 export default function configureStore(initialState = {}, extraParams = {}) {
   let enhancer = applyMiddleware(thunk.withExtraArgument(extraParams))
-  if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+  if (typeof window !== 'undefined' && !__PROD__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
     enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(enhancer)
   }
   const store = createStore(reducer, initialState, enhancer)

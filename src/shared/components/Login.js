@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { login, register } from 'shared/actions/auth'
 import connect from 'shared/connect'
-
+import Header from 'src/shared/components/Header'
+import { loginContainer, loginBtn, errorStyle } from 'src/shared/components/style'
 
 const SCREEN = {
   REGISTER: 'register',
@@ -10,7 +11,7 @@ const SCREEN = {
 
 const AuthComponent = ({ login, register, errorMessage }) => {
   const [{ email = '', password = '' }, setState] = useState({})
-  const [screen, setScreen] = useState(SCREEN.REGISTER)
+  const [screen, setScreen] = useState(SCREEN.LOGIN)
 
   function onChange(field, value) {
     setState(prev => ({
@@ -36,26 +37,23 @@ const AuthComponent = ({ login, register, errorMessage }) => {
     newScreen = screen === SCREEN.REGISTER ? SCREEN.LOGIN : SCREEN.REGISTER
     setScreen(newScreen)
   }
-
   return (
-    <div>
-      <div>
+    <Fragment>
+      <Header>
+        {screen !== SCREEN.LOGIN && <button onClick={() => changeScreen()}>Login</button>}
+        {screen === SCREEN.LOGIN && <button onClick={() => changeScreen()}>Register</button>}
+      </Header>
+      <div css={loginContainer}>
+        <label>Email</label>
+        <input type='email' onChange={({ target: { value } }) => onChange('email', value)} value={email} />
+        <label>Password</label>
+        <input type='password' onChange={({ target: { value } }) => onChange('password', value)} value={password} />
+        <button css={loginBtn} onClick={() => onSubmit()}>{screen}</button>
         {
-          screen === SCREEN.LOGIN &&
-          <div onClick={() => changeScreen()}>go To register</div>
+          errorMessage && <span css={errorStyle}>{errorMessage}</span>
         }
       </div>
-      <input type='email' onChange={({ target: { value } }) => onChange('email', value)} placeholder='email' value={email} />
-      <input type='password' onChange={({ target: { value } }) => onChange('password', value)} placeholder='password' value={password} />
-      <button onClick={() => onSubmit()}>{screen}</button>
-      {
-        screen === SCREEN.REGISTER &&
-        <button onClick={() => changeScreen()}>go to Login</button>
-      }
-      {
-        errorMessage && <span>{errorMessage}</span>
-      }
-    </div>
+    </Fragment>
   )
 }
 

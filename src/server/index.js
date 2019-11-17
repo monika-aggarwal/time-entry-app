@@ -1,4 +1,4 @@
-// import path from 'path'
+import path from 'path'
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser';
@@ -7,9 +7,13 @@ import render from './render'
 import { registerToFirebase } from './registerServer'
 import configureStore from 'shared/store'
 import { getCookieHelpers, parse } from 'server/cookieParser'
+import paths from '../../paths'
+
 require('dotenv').config();
 const app = express();
 registerToFirebase()
+
+app.use(paths.prodPublicPath, express.static(paths.dist))
 
 app.use(cors());
 app.use((req, res, next) => {

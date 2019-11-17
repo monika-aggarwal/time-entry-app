@@ -3,7 +3,7 @@ const shell = require('shelljs')
 const nodemon = require('nodemon')
 var path = require('path')
 var paths = require('../paths')
-var [clientConfig, serverConfig] = require('../config/webpack.config.js')()
+var [clientConfig, serverConfig] = require('../config/webpack.config.js')("development")
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
 const rimraf = require('rimraf')
@@ -37,7 +37,7 @@ const start = async () => {
   clientConfig.output.hotUpdateChunkFilename = 'updates/[id].[hash].hot-update.js'
 
   const publicPath = clientConfig.output.publicPath
-
+  console.log("@@@@@@@@@@@@@@", publicPath)
   clientConfig.output.publicPath = [`http://localhost:${WEBPACK_PORT}`, publicPath]
     .join('/')
     .replace(/([^:+])\/+/g, '$1/')

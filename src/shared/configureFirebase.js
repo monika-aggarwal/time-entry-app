@@ -1,6 +1,6 @@
 import firebase from "firebase/app"
 import 'firebase/auth'
-import 'firebase/firestore'
+import 'firebase/database'
 
 // TODO: Replace the following with your app's Firebase project configuration
 var firebaseConfig = {

@@ -1,7 +1,7 @@
 const path = require('path')
 const paths = require('../paths')
 var webpack = require('webpack')
-
+const nodeExternals = require('webpack-node-externals')
 const babelLoader = (server) => ({
   test: /\.(js|jsx|mjs)$/,
   exclude: /node_modules/,
@@ -53,7 +53,7 @@ const fileLoaderClient = {
   }
 }
 
-module.exports = {
+const devConfig = {
   mode: 'development',
   name: 'server',
   target: 'node',
@@ -72,6 +72,11 @@ module.exports = {
       }
     ]
   },
+  externals: [
+    nodeExternals({
+      whitelist: /\.css$/
+    })
+  ],
   resolve: {
     alias: {
       'dist': paths.dist,
@@ -82,11 +87,33 @@ module.exports = {
       // 'assets': pathList.assets
     },
     extensions: ['.js', '.mjs'],
-    mainFiles: ['index'],
+    // mainFiles: ['index'],
+    mainFields: ['main', 'module'],
     modules: [paths.src, 'node_modules']
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __SERVER__: 'true',
+      __PROD__: JSON.stringify(process.env.NODE_ENV === 'production')
+    })
+  ],
   stats: {
     colors: true
   }
 }
 
+const prodConfig = {
+  ...devConfig,
+  mode: 'production',
+  output: {
+    ...devConfig.output,
+    publicPath: paths.prodPublicPath
+  }
+}
+
+module.exports = (env = "production") => {
+  if (env === 'production') {
+    return prodConfig
+  }
+  return devConfig
+}
