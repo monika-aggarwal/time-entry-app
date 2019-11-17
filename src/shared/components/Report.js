@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import connect from 'shared/connect'
 import TaskFilter from './TaskFilter'
 import { fetchList } from 'shared/actions/task'
@@ -25,12 +25,12 @@ const Report = ({ fetchList }) => {
     })
   }
   return (
-    <div>
+    <Fragment>
       <TaskFilter submit={(stateDate, endDate) => onSubmit(stateDate, endDate)} />
       {
         task && !!task.length && <PrintTask taskList={task} />
       }
-    </div>
+    </Fragment>
   )
 
 }

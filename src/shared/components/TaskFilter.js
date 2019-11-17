@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import DatePicker from 'react-datetime'
+import { loginContainer, loginBtn } from 'src/shared/components/style'
 
 const getStartDate = () => {
   let startDate = new Date()
@@ -27,18 +28,19 @@ const ReportFilter = ({ submit }) => {
   }
 
   return (
-    <div className="report-filter">
-      <div className="row">
+    <div css={loginContainer}>
+      <h2>View Your previous tasks</h2>
+        <label>Start Date</label>
         <DatePicker
-          inputProps={{ placeholder: 'Start date' }}
+          inputProps={{ placeholder: '' }}
           onChange={(date) => handleStartDateChange(date.valueOf())}
         />
+        <label>End Date</label>
         <DatePicker
-          inputProps={{ placeholder: 'End date' }}
+          inputProps={{ placeholder: '' }}
           onChange={(date) => handleEndDateChange(date.valueOf())}
         />
-        <button onClick={() => submit(startDate, endDate)}>Fetch Tasks</button>
-      </div>
+        <button css={loginBtn} onClick={() => submit(startDate, endDate)}>Show Tasks</button>
     </div>
   )
 }

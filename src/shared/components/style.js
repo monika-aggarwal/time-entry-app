@@ -107,7 +107,7 @@ const globals = () => css`
     color: #92a5b7;
     display: block;
   }
-  label+input+label {
+  label+input+label, label+.rdt+label {
     margin-top: 15px;
   }
   h2 {
@@ -128,7 +128,23 @@ const globals = () => css`
     color: #20282f;
     width: 100%;
   }
-
+`
+export const table = css`
+    margin: auto;
+        text-align: center;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+    th, td {
+        padding: 5px;
+        border-bottom: 1px solid #dddddd;
+    }
+    th {
+      font-weight: 500;
+    }
+    tr:nth-of-type(even) {
+      background-color: #e8e8e8;
+    }
 `
 
 export const Core = () => (

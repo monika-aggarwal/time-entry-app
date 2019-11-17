@@ -29,8 +29,8 @@ const App = ({ loggedIn, signOut }) => {
   return (
     <React.Fragment>
       <Header>
-        <button onClick={() => setShowReport(false)}>Add Task</button>
-        <button onClick={() => setShowReport(true)}>View Tasks</button>
+        {showReport && <button onClick={() => setShowReport(false)}>Add Task</button>}
+        {!showReport && <button onClick={() => setShowReport(true)}>View Tasks</button>}
         <button onClick={() => signOut()}>Sign out</button>
       </Header>
       {

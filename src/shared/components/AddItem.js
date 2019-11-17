@@ -60,10 +60,10 @@ const AddItem = ({ createEntry, projectList }) => {
 
         {started && <div css={timer}>Time Elapsed: {formatTimer(count)}</div>}
 
-        <button css={loginBtn} onClick={started ? stop : start}>{started ? 'stop' : 'start'}</button>
+        <button css={loginBtn} onClick={started ? stop : start}>{started ? 'End Task' : 'Start'}</button>
       </div>
       {
-        taskList && !!taskList.length && <PrintTask taskList={taskList} />
+        taskList && !!taskList.length && <PrintTask taskList={taskList} title='Recent Tasks' />
       }
     </Fragment>
   )
