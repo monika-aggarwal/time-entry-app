@@ -40,8 +40,8 @@ const AuthComponent = ({ login, register, errorMessage }) => {
   return (
     <Fragment>
       <Header>
-        <button onClick={() => changeScreen()}>Login</button>
-        <button onClick={() => changeScreen()}>Register</button>
+        {screen !== SCREEN.LOGIN && <button onClick={() => changeScreen()}>Login</button>}
+        {screen === SCREEN.LOGIN && <button onClick={() => changeScreen()}>Register</button>}
       </Header>
       <div css={loginContainer}>
         <label>Email</label>
